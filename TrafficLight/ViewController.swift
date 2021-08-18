@@ -9,11 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var redLightView: UIView!
     @IBOutlet weak var yellowLightView: UIView!
     @IBOutlet weak var greenLightView: UIView!
     @IBOutlet weak var changeColorButton: UIButton!
+    
+    var pressCounter = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +32,27 @@ class ViewController: UIViewController {
         changeColorButton.layer.cornerRadius = 10
         
     }
-
-    @IBAction func buttonPressed() {
-    }
     
+    @IBAction func buttonPressed() {
+        
+        changeColorButton.setTitle("NEXT", for: .normal)
+           
+        if pressCounter == 0 {
+            greenLightView.alpha = 0.3
+            redLightView.alpha = 1
+            pressCounter += 1
+            
+        } else if pressCounter == 1 {
+            redLightView.alpha = 0.3
+            yellowLightView.alpha = 1
+            pressCounter += 1
+            
+        } else {
+            yellowLightView.alpha = 0.3
+            greenLightView.alpha = 1
+            pressCounter = 0
+        }
+    }
 }
+
 
